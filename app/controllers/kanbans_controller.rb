@@ -3,7 +3,7 @@ class KanbansController < ApplicationController
 
   # GET /kanbans
   def index
-    @kanbans = Kanban.all
+    @kanbans = current_user.kanbans
   end
 
   # GET /kanbans/1
@@ -12,7 +12,7 @@ class KanbansController < ApplicationController
 
   # GET /kanbans/new
   def new
-    @kanban = Kanban.new
+    @kanban = current_user.kanbans.build
   end
 
   # GET /kanbans/1/edit
@@ -21,7 +21,7 @@ class KanbansController < ApplicationController
 
   # POST /kanbans
   def create
-    @kanban = Kanban.new(kanban_params)
+    @kanban = current_user.kanbans.build(kanban_params)
 
     if @kanban.save
       redirect_to @kanban, notice: 'Kanban was successfully created.'
@@ -45,14 +45,30 @@ class KanbansController < ApplicationController
     redirect_to kanbans_url, notice: 'Kanban was successfully destroyed.'
   end
 
+  def sort
+    # Get the new col sort
+    sorted_cols = JSON.parse(kanban_params["kanbanIds"])["columns"]
+    sorted_cols.each do |col|
+      # Look at each of its cards
+      col["itemIds"].each do |card_id|
+        # Find the card if in the DB and 
+        # update its column and position within the column
+        Card.find(card_id).update(
+          kanban_column: KanbanColumn.find(col["id"]),
+          position: col["itemIds"].find_index(card_id)
+        )
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_kanban
-      @kanban = Kanban.find(params[:id])
+      @kanban = current_user.kanbans.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def kanban_params
-      params.require(:kanban).permit(:name, :description)
+      params.require(:kanban).permit(:name, :description, :kanbanIds)
     end
 end
