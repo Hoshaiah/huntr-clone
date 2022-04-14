@@ -8,6 +8,7 @@ class CardsController < ApplicationController
   end
 
   def edit
+    @activities = @card.activities.all
   end
 
   def create

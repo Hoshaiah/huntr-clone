@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'cards/edit'
   resources :kanbans do
     resources :kanban_columns do
-      resources :cards
+      resources :cards do
+        resources :activities 
+      end
     end
   end
 

@@ -1,3 +1,5 @@
 <h1>Editing Card</h1>
 
 <%= render 'form', card: @card %>
+<h1>Editing Card</h1>
+<%= link_to "New Activity" , new_kanban_kanban_column_card_activity_url(@kanban.id, @kanban_column.id, @card.id) %>
