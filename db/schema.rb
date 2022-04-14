@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_09_092403) do
+ActiveRecord::Schema.define(version: 2022_04_14_063202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cards", force: :cascade do |t|
+    t.string "content"
+    t.integer "position"
+    t.bigint "kanban_column_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["kanban_column_id"], name: "index_cards_on_kanban_column_id"
+  end
+
+  create_table "kanban_columns", force: :cascade do |t|
+    t.string "name"
+    t.bigint "kanban_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["kanban_id"], name: "index_kanban_columns_on_kanban_id"
+  end
+
+  create_table "kanbans", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_kanbans_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +53,7 @@ ActiveRecord::Schema.define(version: 2022_04_09_092403) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cards", "kanban_columns"
+  add_foreign_key "kanban_columns", "kanbans"
+  add_foreign_key "kanbans", "users"
 end
