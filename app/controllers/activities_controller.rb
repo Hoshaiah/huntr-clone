@@ -1,16 +1,21 @@
 class ActivitiesController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_kanban, only: [:new, :create, :update]
-    before_action :set_kanban_column, only: [:new, :create, :update]
-    before_action :set_card, only: [:new, :create, :update]
-    before_action :set_activity, only: [:update]
+    before_action :set_kanban, only: [:new, :create, :update, :index, :edit]
+    before_action :set_kanban_column, only: [:new, :create, :update, :index, :edit]
+    before_action :set_card, only: [:new, :create, :update, :index, :edit]
+    before_action :set_activity, only: [:update, :edit]
 
 
     def index
+        @activities = @card.activities.all
     end
 
     def new
         @activity = @card.activities.build
+        @activity_tags = choose_specific_activity_creator!(params[:type])
+    end
+
+    def edit
         @activity_tags = choose_specific_activity_creator!(params[:type])
     end
 
@@ -25,7 +30,11 @@ class ActivitiesController < ApplicationController
 
     def update
         if @activity.update(activity_params)
-            redirect_to edit_kanban_kanban_column_card_url(@kanban.id, @kanban_column.id, @card.id)
+            if params[:from_activities]
+                redirect_to kanban_kanban_column_card_activities_url(@kanban.id, @kanban_column.id, @card.id)
+            else
+                redirect_to edit_kanban_kanban_column_card_url(@kanban.id, @kanban_column.id, @card.id)
+            end
         end
     end
 
