@@ -11,6 +11,7 @@ class ActivitiesController < ApplicationController
 
     def new
         @activity = @card.activities.build
+        @activity_tags = choose_specific_activity_creator!(params[:type])
     end
 
     def create

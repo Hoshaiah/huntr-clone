@@ -8,7 +8,7 @@ class CardsController < ApplicationController
   end
 
   def edit
-    @activities = @card.activities.all
+    @activities = sort_needed_activities_by_tag!(@card.activities.all)
   end
 
   def create

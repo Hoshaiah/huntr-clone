@@ -1,0 +1,9 @@
+<div>
+    <h1>Activities</h1>
+    <% @activities.each do |activity| %>
+        <%= form_with url: kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id), method: :put do |f| %>
+            <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
+            <label><%=activity.title %> </label>
+        <% end %>
+    <% end %>
+</div>
