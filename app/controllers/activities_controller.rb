@@ -1,7 +1,6 @@
 class ActivitiesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_kanban, only: [:new, :create, :update, :index, :edit]
-    before_action :set_kanban_column, only: [:new, :create, :update, :index, :edit]
     before_action :set_card, only: [:new, :create, :update, :index, :edit]
     before_action :set_activity, only: [:update, :edit]
 
@@ -22,7 +21,7 @@ class ActivitiesController < ApplicationController
     def create
         @activity = @card.activities.build(activity_params)
         if @activity.save
-            redirect_to  edit_kanban_kanban_column_card_url(@kanban.id, @kanban_column.id, @card.id)
+            redirect_to  edit_kanban_card_url(@kanban.id, @card.id)
         else
             render :new
         end
@@ -31,9 +30,9 @@ class ActivitiesController < ApplicationController
     def update
         if @activity.update(activity_params)
             if params[:from_activities]
-                redirect_to kanban_kanban_column_card_activities_url(@kanban.id, @kanban_column.id, @card.id)
+                redirect_to kanban_card_activities_url(@kanban.id, @card.id)
             else
-                redirect_to edit_kanban_kanban_column_card_url(@kanban.id, @kanban_column.id, @card.id)
+                redirect_to edit_kanban_card_url(@kanban.id, @card.id)
             end
         end
     end
@@ -45,11 +44,7 @@ class ActivitiesController < ApplicationController
     end
 
     def set_card
-        @card = @kanban_column.cards.find(params[:card_id])
-    end
-
-    def set_kanban_column
-        @kanban_column = @kanban.kanban_columns.find(params[:kanban_column_id])
+        @card = @kanban.cards.find(params[:card_id])
     end
 
     def set_kanban
@@ -57,7 +52,7 @@ class ActivitiesController < ApplicationController
     end
 
     def activity_params
-        params.require(:activity).permit(:kanban_id, :kanban_column_id, :card_id, :title, :notes, :startdate, :enddate, :completed, :tag)
+        params.require(:activity).permit(:kanban_id, :card_id, :title, :notes, :startdate, :enddate, :completed, :tag)
     end
 
 end

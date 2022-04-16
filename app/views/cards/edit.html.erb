@@ -1,5 +1,5 @@
 <h1>Editing Card</h1>
-<%= link_to "Activities", kanban_kanban_column_card_activities_path(@kanban.id, @kanban_column.id, @card.id) %>
+<%= link_to "Activities", kanban_card_activities_path(@kanban.id, @card.id) %>
 <%= simple_form_for [@kanban, @card] do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -19,52 +19,52 @@
 <div>
     <p>Applied</p>
     <% @activities[:apply].each do |activity| %>
-        <%= form_with url: kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id), method: :put do |f| %>
+        <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
             <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
-            <%= link_to edit_kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id) do %>
+            <%= link_to edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
                 <label><%=activity.title %> </label>
             <%end%>
         <% end %>
     <% end %>
-    <%= link_to "+ Log Application", new_kanban_kanban_column_card_activity_url(@kanban.id, @kanban_column.id, @card.id, :type => "Apply") %>
+    <%= link_to "+ Log Application", new_kanban_card_activity_url(@kanban.id, @card.id, :type => "Apply") %>
 </div>
 <hr>
 <div>
     <p>Interviews</p>
     <% @activities[:interview].each do |activity| %>
-        <%= form_with url: kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id), method: :put do |f| %>
+        <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
             <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
-            <%= link_to edit_kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id) do %>
+            <%= link_to edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
                 <label><%=activity.title %> </label>
             <% end %>
         <% end %>
     <% end %>
-    <%= link_to "+ Log Interview", new_kanban_kanban_column_card_activity_url(@kanban.id, @kanban_column.id, @card.id, :type => "Interview") %>
+    <%= link_to "+ Log Interview", new_kanban_card_activity_url(@kanban.id, @card.id, :type => "Interview") %>
 </div>
 <hr>
 <div>
     <p>Offers</p>
     <% @activities[:offer].each do |activity| %>
-        <%= form_with url: kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id), method: :put do |f| %>
+        <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
             <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
-            <%= link_to edit_kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id) do %>
+            <%= link_to edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
                 <label><%=activity.title %> </label>
             <% end %>
         <% end %>
     <% end %>
-    <%= link_to "+ Log Offer", new_kanban_kanban_column_card_activity_url(@kanban.id, @kanban_column.id, @card.id, :type => "Offer") %>
+    <%= link_to "+ Log Offer", new_kanban_card_activity_url(@kanban.id, @card.id, :type => "Offer") %>
 </div>
 <hr>
 <div>
     <p>Offer Acceptance</p>
     <% @activities[:accept].each do |activity| %>
-        <%= form_with url: kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id), method: :put do |f| %>
+        <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
             <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
-            <%= link_to edit_kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id) do %>
+            <%= link_to edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
                 <label><%=activity.title %> </label>
             <%end%>
         <% end %>
     <% end %>
-    <%= link_to "+ Log Offer Acceptance", new_kanban_kanban_column_card_activity_url(@kanban.id, @kanban_column.id, @card.id, :type => "Accept") %>
+    <%= link_to "+ Log Offer Acceptance", new_kanban_card_activity_url(@kanban.id, @card.id, :type => "Accept") %>
 </div>
 
