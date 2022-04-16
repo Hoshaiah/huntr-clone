@@ -1,14 +1,14 @@
 <div>
-    <%= link_to "Back to Card" , edit_kanban_kanban_column_card_url(@kanban.id, @kanban_column.id, @card.id) %>
-    <%= link_to "New Activity" , new_kanban_kanban_column_card_activity_url(@kanban.id, @kanban_column.id, @card.id) %>
+    <%= link_to "Back to Card" , edit_kanban_card_url(@kanban.id, @card.id) %>
+    <%= link_to "New Activity" , new_kanban_card_activity_url(@kanban.id, @card.id) %>
     <hr>
     <div>
         <h1>Activities</h1>
         <% @activities.each do |activity| %>
             <% if !activity.completed %>
-                <%= form_with url: kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id), method: :put do |f| %>
+                <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
                     <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
-                    <%= link_to edit_kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id) do %>
+                    <%= link_to kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
                         <label><%=activity.title %> </label>
                     <% end %>
                     <p><%=activity.tag %></p>
@@ -22,9 +22,9 @@
         <p>Complete</p>
         <% @activities.each do |activity| %>
             <% if activity.completed %>
-                <%= form_with url: kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id), method: :put do |f| %>
+                <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
                     <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
-                    <%= link_to edit_kanban_kanban_column_card_activity_path(@kanban.id, @kanban_column.id, @card.id, activity.id) do %>
+                    <%= link_to edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
                         <label><%=activity.title %> </label>
                     <% end %>
                     <p><%=activity.tag %></p>
