@@ -21,14 +21,14 @@
   <% @kanban.kanban_columns.each do |column| %>
     <ul class="kanban-col" data-col-id=<%= column.id %>>
     <div class="kanban-col-name"><%= column.name %></div>
-    <%= link_to new_kanban_kanban_column_card_path(@kanban, column.id) do%>
+    <%= link_to new_kanban_card_path(@kanban, :kanban_column_id => column.id) do%>
       <div class="kanban-col-add">+</div>
     <%end%>
       <% column.cards.sort_by{ |card| card.position}.each do |item| %>
-        <%= link_to edit_kanban_kanban_column_card_path(@kanban, column.id, item.id) do%>
+        <%= link_to edit_kanban_card_path(@kanban, item.id) do%>
             <li class="kanban-col-item" data-item-id=<%= item.id %>>
               <%= item.content %>
-              <%= link_to "delete", kanban_kanban_column_card_path(@kanban, column.id, item.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to "delete", kanban_card_path(@kanban, item.id), method: :delete, data: { confirm: 'Are you sure?' } %>
             </li>
         <%end%>
         <%#= render partial: 'cards/cards', locals: {item: item} %>

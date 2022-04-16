@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  get 'cards/new'
-  get 'cards/edit'
   resources :kanbans do
     resources :kanban_columns do
       resources :cards do
         resources :activities 
       end
     end
+  end
+
+  resources :kanbans do
+    resources :cards
   end
 
   devise_for :users

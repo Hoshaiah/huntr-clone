@@ -1,24 +1,23 @@
 class CardsController < ApplicationController
   before_action :set_kanban
-  before_action :set_kanban_column
   before_action :set_card, only: [:edit, :update, :destroy]
 
   def new
-    @card = @kanban_column.cards.build
-  end
-
-  def edit
-    @activities = sort_needed_activities_by_tag!(@card.activities.all)
+    @kanban_column = @kanban.kanban_columns.find(params[:kanban_column_id])
+    @card = @kanban.cards.build
   end
 
   def create
-    @card = @kanban_column.cards.build(card_params)
+    @card = @kanban.cards.build(card_params)
 
     if @card.save
       redirect_to @kanban, notice: 'Card was successfully created.'
     else
       render :new
     end
+  end
+
+  def edit
   end
 
   def update
@@ -37,11 +36,7 @@ class CardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
   def set_card
-    @card = @kanban_column.cards.find(params[:id])
-  end
-
-  def set_kanban_column
-    @kanban_column = @kanban.kanban_columns.find(params[:kanban_column_id])
+    @card = @kanban.cards.find(params[:id])
   end
 
   def set_kanban
@@ -50,6 +45,6 @@ class CardsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def card_params
-    params.require(:card).permit(:content, :position, :kanban_column_id, :kanban_id)
+    params.require(:card).permit(:content, :position, :kanban_column_id)
   end
 end
