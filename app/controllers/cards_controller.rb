@@ -18,6 +18,7 @@ class CardsController < ApplicationController
   end
 
   def edit
+    @activities = sort_needed_activities_by_tag!(@card.activities.all)
   end
 
   def update
