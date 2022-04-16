@@ -1,6 +1,19 @@
 <h1>Editing Card</h1>
 <%= link_to "Activities", kanban_kanban_column_card_activities_path(@kanban.id, @kanban_column.id, @card.id) %>
-<%= render 'form', card: @card %>
+<%= simple_form_for [@kanban, @card] do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :content %>
+    <%= f.input :position, input_html: {value: @card.position || @card.kanban_column.cards.count} %>
+    <%= f.select :kanban_column_id, @kanban.kanban_columns.map{|c|[c.name, c.id]} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
 
 <hr>
 <div>
