@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_14_063202) do
+ActiveRecord::Schema.define(version: 2022_04_14_191727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "title"
+    t.string "tag"
+    t.boolean "completed"
+    t.string "note"
+    t.datetime "startdate"
+    t.datetime "enddate"
+    t.bigint "card_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_id"], name: "index_activities_on_card_id"
+  end
 
   create_table "cards", force: :cascade do |t|
     t.string "content"
@@ -53,6 +66,7 @@ ActiveRecord::Schema.define(version: 2022_04_14_063202) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "activities", "cards"
   add_foreign_key "cards", "kanban_columns"
   add_foreign_key "kanban_columns", "kanbans"
   add_foreign_key "kanbans", "users"
