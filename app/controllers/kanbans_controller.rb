@@ -24,6 +24,7 @@ class KanbansController < ApplicationController
     @kanban = current_user.kanbans.build(kanban_params)
 
     if @kanban.save
+      @kanban.create_default_columns
       redirect_to @kanban, notice: 'Kanban was successfully created.'
     else
       render :new
