@@ -1,2 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="row">
+    <div class="col-6 d-flex flex-column justify-content-center p-5">
+        <h1 class="display-5 text-primary">Your job hunt– simplified.</h1>
+        <p>Take control of your job hunt by organizing your applications into neatly designed draggable cards. Start your free journey with Huntrclone today!</p>
+        <% if user_signed_in? %>
+            <%= link_to "Create Board", new_kanban_path, class: "btn btn-primary btn-lg" %>
+        <% else %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+        <% end %>
+    </div>
+
+    <div class="col-6 d-flex justify-content-center">
+        <%= undraw("content", color: "#3f51b5", size: "500*400") %>
+    </div>
+</div>
