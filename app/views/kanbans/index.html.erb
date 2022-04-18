@@ -15,7 +15,6 @@
     <% @kanbans.each do |kanban| %>
       <tr>
         <td><%= kanban.name %></td>
-        <td><%= kanban.description %></td>
         <td><%= link_to 'Show', kanban %></td>
         <td><%= link_to 'Edit', edit_kanban_path(kanban) %></td>
         <td><%= link_to 'Destroy', kanban, method: :delete, data: { confirm: 'Are you sure?' } %></td>
