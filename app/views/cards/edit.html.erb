@@ -6,7 +6,6 @@
 
   <div class="form-inputs">
     <%= f.input :content %>
-    <%= f.input :position, input_html: {value: @card.position || @card.kanban_column.cards.count} %>
     <%= f.select :kanban_column_id, @kanban.kanban_columns.map{|c|[c.name, c.id]}, :selected => @card.kanban_column.id %>
   </div>
 

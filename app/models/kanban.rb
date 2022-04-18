@@ -8,10 +8,7 @@ class Kanban < ApplicationRecord
 
     def create_default_columns
         KANBAN_COLUMNS.each do |column|
-            self.kanban_columns.create(
-                name: column,
-                kanban: self
-            )
+            self.kanban_columns.create(name: column)
         end 
     end
 

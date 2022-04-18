@@ -5,11 +5,6 @@
   <%= @kanban.name %>
 </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @kanban.description %>
-</p>
-
 <% if false %>
   <%= form_with url: kanban_sort_path, method: :patch do |f|%>
     <%= f.text_field 'kanban[kanbanIds]', class: "kanban-form-input" %>
