@@ -1,18 +1,28 @@
-<%= simple_form_for(@kanban) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="col-lg-5 col-md-7 col-sm-9 mx-auto">
+  <div class="card p-4">
+    <%if @kanban.name.present? %>
+      <h3>Editing Kanban</h3>
+    <%else%>
+      <h3>New Kanban</h3>
+    <%end%>
+  
+    <%= simple_form_for(@kanban) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
+      <div class="form-inputs">
+        <%= f.input :name %>
+      </div>
+
+      <div class="form-actions d-flex mb-2">
+        <%= f.button :submit, class: "btn btn-primary flex-fill"%>
+      </div>
+
+      <%if @kanban.name.present? %>
+        <%= link_to 'Show', @kanban %>
+      <%end%>
+
+      <%= link_to 'Back', kanbans_path %>
+    <% end %>
   </div>
-
-  <div class="form-actions d-flex mb-2">
-    <%= f.button :submit, class: "btn btn-primary flex-fill"%>
-  </div>
-
-  <%if @kanban.name.present? %>
-    <%= link_to 'Show', @kanban %>
-  <%end%>
-
-  <%= link_to 'Back', kanbans_path %>
-<% end %>
+</div>
