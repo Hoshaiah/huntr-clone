@@ -4,7 +4,7 @@
 
     <thead class="table-primary">
       <tr>
-        <th class="text-center">Name</th>
+        <th class="">Name</th>
         <th class="text-center">Edit</th>
         <th class="text-center" >Delete</th>
       </tr>
@@ -13,9 +13,9 @@
     <tbody>
       <% @kanbans.each do |kanban| %>
         <tr>
-          <td class="text-center"><%= link_to kanban.name, kanban, class: "fw-bold"%></td>
+          <td class=""><%= link_to kanban.name, kanban, class: "fw-bold"%></td>
           <td class="text-center"><%= link_to '', edit_kanban_path(kanban), class: "bi bi-pencil-square" %></td>
-          <td class="text-center"><%= link_to '', kanban, method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill" %></td>
+          <td class="text-center"><%= link_to '', kanban, method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger" %></td>
         </tr>
       <% end %>
         <tr>
