@@ -23,8 +23,12 @@
         <% column.cards.sort_by{ |card| card.position}.each do |item| %>
           <%= link_to edit_kanban_card_path(@kanban, item.id) do%>
               <li class="kanban-col-item card" data-item-id=<%= item.id %>>
-                <%= item.content %>
-                <%= link_to "delete", kanban_card_path(@kanban, item.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <div class="d-flex justify-content-between">
+                  <strong><%= item.job_title %></strong>
+                  <%= link_to '', kanban_card_path(@kanban, item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger" %>
+                </div>
+
+                <small class="text-muted"><%= item.company %></small>
               </li>
           <%end%>
         <%end%>

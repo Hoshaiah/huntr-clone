@@ -7,7 +7,8 @@
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
       <div class="form-inputs mb-3">
-        <%= f.input :content %>
+        <%= f.input :job_title %>
+        <%= f.input :company %>
         <%= f.select :kanban_column_id, 
           @kanban.kanban_columns.map{|c|[c.name, c.id]}, {selected: @kanban_column.id}, {class: 'form-select'} %>
       </div>
