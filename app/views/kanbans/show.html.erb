@@ -25,7 +25,7 @@
               <li class="kanban-col-item card" data-item-id=<%= item.id %>>
                 <div class="d-flex justify-content-between">
                   <strong><%= item.job_title %></strong>
-                  <%= link_to '', kanban_card_path(@kanban, item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger" %>
+                  <%= link_to '', kanban_card_path(@kanban, item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
                 </div>
 
                 <small class="text-muted"><%= item.company %></small>
