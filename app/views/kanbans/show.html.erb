@@ -1,7 +1,16 @@
 <div class="mt-n4">
-  <div class="mb-2">
-    <strong>Name: </strong>
-    <%= @kanban.name %> <%= link_to '', edit_kanban_path(@kanban), class: "bi bi-pencil-square" %>
+  <div class="mb-2 d-flex justify-content-around">
+    <div>
+      <%# <strong>Name: </strong> %>
+      <%= @kanban.name %>
+      <%= link_to '', edit_kanban_path(@kanban), class: "bi bi-pencil-square" %>
+    </div>
+
+    <div>
+      metrics
+      <%= link_to '', kanban_metrics_index_path(@kanban), class: "bi bi-bar-chart-line-fill" %>
+    </div>
+
   </div>
 
   <% if false %>

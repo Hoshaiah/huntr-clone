@@ -1,0 +1,31 @@
+<div class="col-lg-8 col-md-8 col-sm-9 mx-auto">
+  <table class="table table-sm table-hover caption-top border">
+    <caption>Jobs</caption>
+
+    <thead class="table-primary">
+      <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Created at</th>
+        <th>List</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <%if @kanban.cards.any? %>
+      <% @kanban.cards.order(updated_at: :desc).each do |card| %>
+            <tr>
+            <td><%= card.job_title %></td>
+            <td><%= card.company %></td>
+            <td><%= card.created_at.strftime('%b %e, %Y') %></td>
+            <td><%= card.kanban_column.name %></td>
+            </tr>
+        <% end %>
+    <% else %>
+        <tr>
+        <td colspan="4" class="text-muted text-center">no available data</td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
