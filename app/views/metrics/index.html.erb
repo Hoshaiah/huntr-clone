@@ -1,5 +1,10 @@
 <div class="col-lg-8 col-md-8 col-sm-9 mx-auto">
+    <% @graph_columns.each do |column| %>
+        <%= column.name %>
+    <%end%>
 
+
+     <%= column_chart({'a' => 3, 'b' => 4, 'c' => 5}) %>
 
   <table class="table table-sm table-hover caption-top border">
     <caption>Jobs</caption>
@@ -14,8 +19,8 @@
     </thead>
 
     <tbody>
-    <%if @kanban.cards.any? %>
-      <% @kanban.cards.order(updated_at: :desc).each do |card| %>
+    <%if @jobs.any? %>
+      <% @jobs.each do |card| %>
             <tr>
             <td><%= card.job_title %></td>
             <td><%= card.company %></td>
