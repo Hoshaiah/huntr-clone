@@ -13,10 +13,10 @@ class Card < ApplicationRecord
     elsif kanban_column_name == "Interview"
       self.activities.create(tag: "On Site Interview", title: "On Site Interview")
       return true
-    elsif kanban_column_name == "Offer" && !self.activities.find_by(tag: "Offer Received") 
+    elsif kanban_column_name == "Offer Received" && !self.activities.find_by(tag: "Offer Received") 
       self.activities.create(tag: "Offer Received", title: "Offer Received", completed: true)
       return true
-    elsif kanban_column_name == "Accepted" && !self.activities.find_by(tag: "Offer Accepted")  
+    elsif kanban_column_name == "Offer Accepted" && !self.activities.find_by(tag: "Offer Accepted")  
       self.activities.create(tag: "Offer Accepted", title: "Offer Accepted", completed: true)
       return true
     end
