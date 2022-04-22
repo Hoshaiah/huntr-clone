@@ -1,5 +1,5 @@
 class KanbansController < ApplicationController
-  before_action :set_kanban, only: [:show, :edit, :update, :destroy]
+  before_action :set_kanban, only: [:show, :edit, :update, :destroy, :sort]
 
   # GET /kanbans
   def index
@@ -54,10 +54,12 @@ class KanbansController < ApplicationController
       col["itemIds"].each do |card_id|
         # Find the card if in the DB and 
         # update its column and position within the column
-        Card.find(card_id).update(
+        if Card.find(card_id).update(
           kanban_column: KanbanColumn.find(col["id"]),
           position: col["itemIds"].find_index(card_id)
         )
+          Card.find(card_id).create_activities_upon_drag(@kanban, col["id"])
+        end
       end
     end
   end
