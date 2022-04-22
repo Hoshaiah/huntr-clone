@@ -21,7 +21,7 @@ module ApplicationHelper
       acceptance = []
   
       activities.each do |activity|
-        if ["Phone Interview", "Phone Screen", "On Site Interview"].include? activity
+        if ["Phone Interview", "Phone Screen", "On Site Interview"].include? activity.tag
           interviews.push(activity)
         elsif activity.tag == "Apply"
           applications.push(activity)
