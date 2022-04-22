@@ -17,7 +17,7 @@ class Card < ApplicationRecord
       self.activities.create(tag: "Offer Received", title: "Offer Received", completed: true)
       return true
     elsif kanban_column_name == "OFFER ACCEPTED" && !self.activities.find_by(tag: "Offer Accepted")  
-      self.activities.create(tag: "Offer Accepted", title: "Offer Accepted", completed: true)
+      self.activities.create(tag: "Accept Offer", title: "Offer Accepted", completed: true)
       return true
     end
     return false
