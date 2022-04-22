@@ -4,7 +4,7 @@ class Kanban < ApplicationRecord
     has_many :cards, through: :kanban_columns
     has_many :activities, through: :cards
 
-    KANBAN_COLUMNS = ['WISHLIST','APPLIED','INTERVIEW','OFFER RECIEVED','OFFER ACCEPTED', 'OFFER REJECTED', 'REJECTED']
+    KANBAN_COLUMNS = ['WISHLIST','APPLIED','INTERVIEW','OFFER RECEIVED','OFFER ACCEPTED', 'OFFER REJECTED', 'REJECTED']
 
     def create_default_columns
         KANBAN_COLUMNS.each do |column|
