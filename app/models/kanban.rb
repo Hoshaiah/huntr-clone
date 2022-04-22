@@ -12,4 +12,15 @@ class Kanban < ApplicationRecord
         end 
     end
 
+    def create_column_graph_data
+        columns = self.kanban_columns.where(name: ["WISHLIST", "APPLIED", "INTERVIEW", "OFFER RECIEVED"])
+        hash_format = {}
+
+        columns.each do |column|
+          hash_format[column.name] = column.cards.count
+        end
+        
+        return hash_format
+    end
+
 end
