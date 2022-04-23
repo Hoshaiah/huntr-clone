@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :cards do
       resources :activities
     end
+
+    get 'metrics/index'
   end
 
   devise_for :users

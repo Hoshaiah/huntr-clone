@@ -54,6 +54,6 @@ class CardsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def card_params
-    params.require(:card).permit(:content, :kanban_column_id)
+    params.require(:card).permit(:job_title, :company, :kanban_column_id)
   end
 end
