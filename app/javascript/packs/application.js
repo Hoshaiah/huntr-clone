@@ -14,6 +14,7 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
+import "chartkick/chart.js"
 
 import {initKanbanSortable} from '../plugins/initSortable'
 

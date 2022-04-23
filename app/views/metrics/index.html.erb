@@ -1,0 +1,39 @@
+<div class="row px-3">
+    <div class="col-lg-6">
+    <%# number of jobs: @kanban.cards.count %>
+        <div class="text-muted">Job Search Funnel</div>
+        <%= column_chart @column_graph_data, empty: "no data available", label: "Jobs" %>
+    </div>
+
+    <div class="col-lg-6">
+        <table class="table table-sm table-hover caption-top border">
+            <caption>Jobs</caption>
+
+            <thead class="table-primary">
+                <tr>
+                    <th>Title</th>
+                    <th>Company</th>
+                    <th>Created at</th>
+                    <th>List</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <%if @jobs.any? %>
+                    <% @jobs.each do |card| %>
+                        <tr>
+                            <td><%= card.job_title %></td>
+                            <td><%= card.company %></td>
+                            <td><%= card.created_at.strftime('%b %e, %Y') %></td>
+                            <td><%= card.kanban_column.name %></td>
+                        </tr>
+                    <% end %>
+                <% else %>
+                    <tr>
+                        <td colspan="4" class="text-muted text-center">no data available</td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
