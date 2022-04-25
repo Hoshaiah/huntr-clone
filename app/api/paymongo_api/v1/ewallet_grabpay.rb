@@ -16,8 +16,8 @@ module PaymongoApi
                             attributes:{
                                 amount:100000.to_i,
                                 redirect:{
-                                    success:"http://localhost:3000//payments/grabpay/success",
-                                    failed:"http://localhost:3000/subscription/ewallet/failed"
+                                    success:"https://huntr-clone.herokuapp.com/payments/grabpay/success",
+                                    failed:"https://huntr-clone.herokuapp.com/subscription/ewallet/failed"
                                 },
                                 type:"grab_pay",
                                  currency:"PHP"
