@@ -7,12 +7,23 @@
     box-shadow: 0px 10px 7px rgba(0, 0, 0, 0.04);
     text-decoration: none;
     background-color: white;
-    border-radius: 0.5em;
 }
 
 .new-board:hover {
     cursor: pointer;
     background-color: $purple;
-    border-radius: 0.5em;
     color: white;
+}
+
+.sidenav-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: none;
+    box-shadow: 0px 10px 7px rgba(0, 0, 0, 0.04);
+}
+
+.text-decoration-none {
+    text-decoration: none;
 }
