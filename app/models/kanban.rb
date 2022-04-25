@@ -13,7 +13,7 @@ class Kanban < ApplicationRecord
     end
 
     def create_column_graph_data
-        columns = self.kanban_columns.where(name: ["WISHLIST", "APPLIED", "INTERVIEW", "OFFER RECIEVED"])
+        columns = self.kanban_columns.where(name: ["WISHLIST", "APPLIED", "INTERVIEW", "OFFER RECEIVED"])
         hash_format = {}
 
         columns.each do |column|
