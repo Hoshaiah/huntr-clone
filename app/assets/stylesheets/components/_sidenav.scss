@@ -1,0 +1,18 @@
+.sidenav {
+    min-height: 110vh;
+    max-height: none;
+}
+
+.new-board {
+    box-shadow: 0px 10px 7px rgba(0, 0, 0, 0.04);
+    text-decoration: none;
+    background-color: white;
+    border-radius: 0.5em;
+}
+
+.new-board:hover {
+    cursor: pointer;
+    background-color: $purple;
+    border-radius: 0.5em;
+    color: white;
+}

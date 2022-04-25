@@ -1,16 +1,26 @@
 <div class ="row g-0">
   <div class="col-2">
-    <div class="d-flex flex-column mt-n5 ms-n3 p-3 bg-light h-100">
+    <div class="d-flex flex-column mt-n5 ms-n3 p-3 bg-light sidenav">
       <div class="d-flex justify-content-between">
         <strong class="px-2">My Boards:</strong>
-        <div class="border px-2">+</div>
+        <%= link_to new_kanban_path, class: "link-dark new-board" do %>
+          <div class="px-2">+</div>
+        <% end %>
       </div>
       <hr>
       <ul class="nav nav-pills flex-column">
-       <% @kanbans.each do |kanban| %>
+       <% @kanbans.each_with_index do |kanban, index| %>
           <li class="nav-item">
+
             <%= link_to kanban.name, kanbans_path(kanban_id: kanban), 
-            class: "nav-link link-dark #{"active" if kanban.id == params[:kanban_id].to_i}"%>
+            class: "nav-link link-dark #{
+              if params[:kanban_id].nil? && index == 0
+                "active"
+              elsif kanban.id == params[:kanban_id].to_i
+                "active"
+              end
+            }"%>
+
           </li>
         <% end %>
       </ul>
@@ -69,29 +79,31 @@
   </div>
 </div>
 
-<div class="col-lg-8 col-md-8 col-sm-9 mx-auto">
-  <table class="table table-hover caption-top border">
-    <caption>My Boards:</caption>
+<% if false %>
+  <div class="col-lg-8 col-md-8 col-sm-9 mx-auto">
+    <table class="table table-hover caption-top border">
+      <caption>My Boards:</caption>
 
-    <thead class="table-primary">
-      <tr>
-        <th class="">Name</th>
-        <th class="text-center">Edit</th>
-        <th class="text-center" >Delete</th>
-      </tr>
-    </thead>
+      <thead class="table-primary">
+        <tr>
+          <th class="">Name</th>
+          <th class="text-center">Edit</th>
+          <th class="text-center" >Delete</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <% @kanbans.each do |kanban| %>
-        <tr>
-          <td class=""><%= link_to kanban.name, kanbans_path(kanban_id: kanban), class: "fw-bold"%></td>
-          <td class="text-center"><%= link_to '', edit_kanban_path(kanban), class: "bi bi-pencil-square" %></td>
-          <td class="text-center"><%= link_to '', kanban, method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger" %></td>
-        </tr>
-      <% end %>
-        <tr>
-          <td colspan="3" class="text-center"><%= link_to '+ new board', new_kanban_path, class: "fw-bold" %></td>
-        </tr>
-    </tbody>
-  </table>
-</div>
+      <tbody>
+        <% @kanbans.each do |kanban| %>
+          <tr>
+            <td class=""><%= link_to kanban.name, kanbans_path(kanban_id: kanban), class: "fw-bold"%></td>
+            <td class="text-center"><%= link_to '', edit_kanban_path(kanban), class: "bi bi-pencil-square" %></td>
+            <td class="text-center"><%= link_to '', kanban, method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger" %></td>
+          </tr>
+        <% end %>
+          <tr>
+            <td colspan="3" class="text-center"><%= link_to '+ new board', new_kanban_path, class: "fw-bold" %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>
