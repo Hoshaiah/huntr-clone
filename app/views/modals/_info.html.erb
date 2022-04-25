@@ -1,0 +1,122 @@
+<div class="modal" id="exampleModalToggle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 800px;">
+    <div class="modal-content border" style="border-radius: 10px;">
+      <div class="modal-header">
+        <h4 class="modal-title text-center w-100" id="exampleModalToggleLabel">
+          <% if !current_user.nil? && current_user.kanbans.count != 0 %>
+            <%= 10 - current_user.kanbans.find_by(id: current_user.kanbans.ids).cards.count %>
+            out 10 free cards left.
+          <% else %>
+          10 out 10 free cards left.
+          <% end %>
+        </h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p class="mb-4 fs-5" style="text-align: justify; text-indent: 40px;">
+        Hunter Clone provides each free account user with a single board consisting of ten cards to classify and organize careers. Subscribe now to register your account as a premium for the unlimited creation of boards and cards.
+        </p>
+        
+        <main>
+          <div class="row row-cols-1 row-cols-md-2 mb-2 text-center">
+            <div class="col">
+              <div class="card mb-4 rounded-5 shadow-sm border-1">
+                <div class="card-header py-3">
+                  <h4 class="my-0 fw-normal">Free</h4>
+                </div>
+                <div class="card-body rounded-5 border-0">
+                  <h2 class="card-title pricing-card-title">&#8369; 0<small class="text-muted fw-light">/mo</small></h2>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>1 Board</li>
+                    <li>10 Cards</li>
+                  </ul>
+                  <button type="button" class="btn btn-lg btn-outline-secondary rounded-pill disabled" style="width: 80%;"> Already signed up</button>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card mb-4 rounded-5 shadow border-1">
+                <div class="card-header py-3 text-white bg-primary border-primary">
+                  <h4 class="my-0 fw-normal">Premium</h4>
+                </div>
+                <div class="card-body rounded-5 border-5 border-primary">
+                  <h2 class="card-title pricing-card-title">&#8369; 500<small class="text-muted fw-light">/one-time</small></h2>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>Unlimited Boards</li>
+                    <li>Unlimited Cards</li>
+                  </ul>
+                  <button class="btn btn-lg btn-primary rounded-pill" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" style="width: 80%;" >Subscribe?</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="display-6 text-center mb-4">Compare plans</h2>
+
+          <div class="table-responsive">
+            <table class="table text-center">
+              <thead>
+                <tr>
+                  <th style="width: 34%;"></th>
+                  <th style="width: 33%;">Free</th>
+                  <th style="width: 33%;">Premium</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="text-start">Boards</th>
+                  <td>1</td>
+                  <td>Unlimited</td>
+                  <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="text-start">Cards</th>
+                  <td>10</td>
+                  <td>Unlimited</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
+
+      </div>
+    
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border border-secondary shadow" style="border-radius: 10px;">
+      <div class="modal-header bg-primary" style="border-top-left-radius: 9px; border-top-right-radius: 9px;">
+        <h4 class="modal-title w-100 text-center text-white" id="exampleModalToggleLabel2">How do you want to pay?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class='container text-center'>
+          <p class="fs-5 my-3"><strong>&#8369; 1000 </strong> will be deducted to your account.</p>
+          <%= form_with url: source_gcash_path do |f| %>
+            <button class="btn btn-primary p-0 pe-3 mt-4" style="max-height: 50px; border-radius: 20px;">
+              <img src="/assets/gcash.png" class="img-fluid me-2" width="49" style="max-height: 48px; border-top-left-radius: 19px; border-bottom-left-radius: 19px;"/> Pay with Gcash
+            </button>
+          <% end %>
+          <%= form_with url: source_grabpay_path do |f| %>
+            <button class="btn btn-primary p-0 pe-2 my-3" style="max-height: 50px; border-radius: 20px;">
+              <img src="/assets/grabpay.png" class="img-fluid me-2" width="47" style="max-height: 48px; border-top-left-radius: 19px; border-bottom-left-radius: 19px;"/> Pay with GrabPay
+            </button>
+            
+          <% end %>
+          <%= form_with url: subscribe_path do |f| %>
+            <button class="btn btn-primary p-0 pe-3" style="max-height: 50px; border-radius: 20px;">
+              <img src="/assets/visalogo.png" class="img-fluid me-3" width="49" style="max-height: 48px; border-top-left-radius: 19px; border-bottom-left-radius: 19px;"/> Pay with Cards
+            </button>
+          <% end %>
+          <button class="btn btn-primary my-4 rounded-pill" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" style="max-width: 200px; width: 200px;">No thanks</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if @show_modal %>
+  <script>$(<button data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" ></button>).click()</script>
+<% end %>

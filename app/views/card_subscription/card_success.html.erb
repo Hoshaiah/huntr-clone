@@ -1,0 +1,31 @@
+<div class="card mx-auto border border-2-success" style="max-width: 500px; margin-top: 100px;">
+    
+    <div class="card-header text-center bg-primary p-3">
+        <span class="check rounded-circle p-2 border border-white border-3 fs-4">
+            <% if @status == "paid" %>
+                <i class="fa fa-check fs-3 text-white" aria-hidden="true"></i>
+            <% else %>
+                <i class="fa fa-x fs-3 text-white" aria-hidden="true"></i>
+            <% end %>
+        </span>
+    </div>
+    <div class="content card-body text-center">
+        <% if @status == "paid" %>
+
+            <h1 class="my-3">Payment Success !</h1>
+            <p class="fs-5">Congratulations, your account has been upgraded to premium. You can now have unlimited boards and cards.</p>
+            <%= link_to "Continue", root_path, class:"btn btn-lg btn-primary rounded-pill my-3", style:"width: 50%;" %>
+
+        <% else %>
+
+            <h1 class="my-3">Payment Failed !</h1>
+            <p class="fs-5">Sorry, Your transaction failed, please try again or contact site support.</p>
+            <%= link_to "Continue", root_path, class:"btn btn-lg btn-primary rounded-pill my-3", style:"width: 50%;" %>
+
+        <% end %>
+        
+    </div>
+             
+</div>
+
+
