@@ -4,6 +4,7 @@ class KanbansController < ApplicationController
   # GET /kanbans
   def index
     @kanbans = current_user.kanbans
+    @kanban = !params[:kanban_id].nil? ? current_user.kanbans.find(params[:kanban_id]) : current_user.kanbans.first
   end
 
   # GET /kanbans/1
