@@ -17,6 +17,7 @@ import "bootstrap"
 import "chartkick/chart.js"
 
 import {initKanbanSortable} from '../plugins/initSortable'
+import {formValidation} from '../plugins/formValidation'
 
 document.addEventListener('turbolinks:load', 
   () => {

@@ -10,12 +10,22 @@ class CardsController < ApplicationController
   def create
     @card = @kanban.cards.build(card_params)
 
+    begin 
+      if current_user.premium == false && current_user.kanbans.find_by(id: current_user.kanbans.ids).cards.count >= 10
+        @card.destroy
+        flash.now[:notice] = "Please upgrade to premium to create more cards !"
+      end
+      
+    rescue NoMethodError
+      
+    end
+
     if @card.save
       card_position = @card.kanban_column.cards.count - 1 #position of the card inside new column will update to the last
       @card.update(position: card_position)
       redirect_to @kanban, notice: 'Card was successfully created.'
     else
-      render :new
+      
     end
   end
 
