@@ -76,7 +76,8 @@ class CardSubscriptionController < ApplicationController
       status = paymongo.subscription_status?
 
       if status == "paid"
-        current_user.update(premium: true)    
+        current_user.update(premium: true)
+        redirect_to subscription_card_success_path
       end
     rescue NoMethodError
       
