@@ -1,14 +1,10 @@
 class KanbansController < ApplicationController
-  before_action :set_kanban, only: [:show, :edit, :update, :destroy, :sort]
+  before_action :set_kanban, only: [:edit, :update, :destroy, :sort]
 
   # GET /kanbans
   def index
     @kanbans = current_user.kanbans
     @kanban = !params[:kanban_id].nil? ? current_user.kanbans.find(params[:kanban_id]) : current_user.kanbans.first
-  end
-
-  # GET /kanbans/1
-  def show
   end
 
   # GET /kanbans/new
