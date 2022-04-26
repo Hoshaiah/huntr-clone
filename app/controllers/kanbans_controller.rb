@@ -35,7 +35,7 @@ class KanbansController < ApplicationController
     
     if @kanban.save
       @kanban.create_default_columns
-      redirect_to @kanban, notice: 'Kanban was successfully created.'
+      redirect_to kanbans_path(kanban_id: @kanban), notice: 'Kanban was successfully created.'
     else  
       render :new
     end
@@ -44,7 +44,7 @@ class KanbansController < ApplicationController
   # PATCH/PUT /kanbans/1
   def update
     if @kanban.update(kanban_params)
-      redirect_to @kanban, notice: 'Kanban was successfully updated.'
+      redirect_to kanbans_path(kanban_id: @kanban), notice: 'Kanban was successfully updated.'
     else
       render :edit
     end
@@ -53,7 +53,7 @@ class KanbansController < ApplicationController
   # DELETE /kanbans/1
   def destroy
     @kanban.destroy
-    redirect_to kanbans_url, notice: 'Kanban was successfully destroyed.'
+    redirect_to kanbans_path, notice: 'Kanban was successfully destroyed.'
   end
 
   def sort

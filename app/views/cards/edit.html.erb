@@ -69,6 +69,8 @@
             <% end %>
             <%= link_to "+ Log Offer Acceptance", new_kanban_card_activity_url(@kanban.id, @card.id, :type => "Accept") %>
         </div>
+
+        <%= link_to 'Back', kanbans_path(kanban_id: @kanban), class: "fw-bold" %>
     </div>
 </div>
 

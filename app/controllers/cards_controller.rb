@@ -23,9 +23,9 @@ class CardsController < ApplicationController
     if @card.save
       card_position = @card.kanban_column.cards.count - 1 #position of the card inside new column will update to the last
       @card.update(position: card_position)
-      redirect_to @kanban, notice: 'Card was successfully created.'
+      redirect_to kanbans_path(kanban_id: @kanban), notice: 'Card was successfully created.'
     else
-      
+      render :new
     end
   end
 
@@ -41,7 +41,7 @@ class CardsController < ApplicationController
         card_position = @card.kanban_column.cards.count - 1 #position of the card inside new column will update to the last
         @card.update(position: card_position)
       end
-      redirect_to @kanban, notice: 'Card was successfully updated.'
+      redirect_to kanbans_path(kanban_id: @kanban), notice: 'Card was successfully updated.'
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class CardsController < ApplicationController
 
   def destroy
     @card.destroy
-    redirect_to @kanban, notice: 'Card was successfully destroyed.'
+    redirect_to kanbans_path(kanban_id: @kanban), notice: 'Card was successfully destroyed.'
   end
 
   private
