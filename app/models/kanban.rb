@@ -3,6 +3,7 @@ class Kanban < ApplicationRecord
     has_many :kanban_columns, dependent: :destroy
     has_many :cards, through: :kanban_columns
     has_many :activities, through: :cards
+    validate :save_kanban?, :on => :create
 
     KANBAN_COLUMNS = ['WISHLIST','APPLIED','INTERVIEW','OFFER RECEIVED','OFFER ACCEPTED', 'OFFER REJECTED', 'REJECTED']
 
@@ -21,6 +22,15 @@ class Kanban < ApplicationRecord
         end
         
         return hash_format
+    end
+
+    private
+
+    def save_kanban?
+        if Current.user.premium == false && Current.user.kanbans.count >= 1
+            errors.add(:kanbans, message: "Please upgrade to premium to create more boards!")
+            return false
+        end
     end
 
 end
