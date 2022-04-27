@@ -40,6 +40,7 @@ class EwalletSubscriptionController < ApplicationController
         payment_status = gcash.gcash_status?
         if payment_status = 'paid'
           current_user.update(premium: true)
+          UserMailer.with(user: current_user).user_upgraded_to_premium.deliver_now
         end
       rescue ApiExceptions::BadRequest
         redirect_to error_path
@@ -56,6 +57,7 @@ class EwalletSubscriptionController < ApplicationController
         payment_status = grabpay.grabpay_status?
       if payment_status = 'paid'
         current_user.update(premium: true)
+        UserMailer.with(user: current_user).user_upgraded_to_premium.deliver_now
       end
       rescue ApiExceptions::BadRequest
         redirect_to error_path
