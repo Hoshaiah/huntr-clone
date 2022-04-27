@@ -1,14 +1,26 @@
 <div class="col-10">
   <div class="mt-n4">
-    <div class="mb-2 d-flex justify-content-around">
+    <div class="d-flex justify-content-between px-5">
       <div>
+        <strong>Board:</strong>
         <%= @kanban.name %>
-        <%= link_to '', edit_kanban_path(@kanban), class: "bi bi-pencil-square" %>
       </div>
 
-      <div>
-        metrics
-        <%= link_to '', kanban_metrics_index_path(@kanban), class: "bi bi-bar-chart-line-fill" %>
+      <div class="d-flex justify-content-around mb-3 mt-n1">
+        <%= button_to kanban_metrics_index_path(@kanban), method: :get, class: "btn btn-sm button-style border mx-3" do %>
+          <div>
+            view metrics
+            <i class ="bi bi-bar-chart-line-fill"></i>
+          </div>
+        <% end %>
+
+        <!--
+        <%= button_to kanban_metrics_index_path(@kanban), method: :get, class: "btn btn-sm btn-light border mx-3" do %>
+          <div>
+            view activities
+            <i class ="bi bi-bar-chart-line-fill"></i>
+          </div>
+        <% end %> -->
       </div>
 
     </div>
