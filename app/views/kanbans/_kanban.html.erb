@@ -1,48 +1,49 @@
-<div class="mt-n4">
-  <div class="mb-2 d-flex justify-content-around">
-    <div>
-      <%# <strong>Name: </strong> %>
-      <%= @kanban.name %>
-      <%= link_to '', edit_kanban_path(@kanban), class: "bi bi-pencil-square" %>
+<div class="col-10">
+  <div class="mt-n4">
+    <div class="mb-2 d-flex justify-content-around">
+      <div>
+        <%= @kanban.name %>
+        <%= link_to '', edit_kanban_path(@kanban), class: "bi bi-pencil-square" %>
+      </div>
+
+      <div>
+        metrics
+        <%= link_to '', kanban_metrics_index_path(@kanban), class: "bi bi-bar-chart-line-fill" %>
+      </div>
+
     </div>
 
-    <div>
-      metrics
-      <%= link_to '', kanban_metrics_index_path(@kanban), class: "bi bi-bar-chart-line-fill" %>
-    </div>
-
-  </div>
-
-  <% if false %>
-    <%= form_with url: kanban_sort_path, method: :patch do |f|%>
-      <%= f.text_field 'kanban[kanbanIds]', class: "kanban-form-input" %>
-      <%= f.submit "Saved changes" %>
+    <% if false %>
+      <%= form_with url: kanban_sort_path, method: :patch do |f|%>
+        <%= f.text_field 'kanban[kanbanIds]', class: "kanban-form-input" %>
+        <%= f.submit "Saved changes" %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <div class="kanban" data-id="<%= @kanban.id %>">
-    <% @kanban.kanban_columns.each do |column| %>
-      <ul class="kanban-col border" data-col-id=<%= column.id %>>
+    <div class="kanban" data-id="<%= @kanban.id %>">
+      <% @kanban.kanban_columns.each do |column| %>
+        <ul class="kanban-col border" data-col-id=<%= column.id %>>
 
-        <div class="kanban-col-name text-light"><%= column.name %></div>
-        <%= link_to new_kanban_card_path(@kanban, :kanban_column_id => column.id) do%>
-          <div class="kanban-col-add text-light">+</div>
-        <%end%>
-
-        <% column.cards.sort_by{ |card| card.position}.each do |item| %>
-          <%= link_to edit_kanban_card_path(@kanban, item.id) do%>
-              <li class="kanban-col-item card" data-item-id=<%= item.id %>>
-                <div class="d-flex justify-content-between">
-                  <strong><%= item.job_title %></strong>
-                  <%= link_to '', kanban_card_path(@kanban, item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
-                </div>
-
-                <small class="text-muted"><%= item.company %></small>
-              </li>
+          <div class="kanban-col-name text-light"><%= column.name %></div>
+          <%= link_to new_kanban_card_path(@kanban, :kanban_column_id => column.id) do%>
+            <div class="kanban-col-add text-light">+</div>
           <%end%>
-        <%end%>
 
-      </ul>
-    <% end %>
+          <% column.cards.sort_by{ |card| card.position}.each do |item| %>
+            <%= link_to edit_kanban_card_path(@kanban, item.id) do%>
+                <li class="kanban-col-item card" data-item-id=<%= item.id %>>
+                  <div class="d-flex justify-content-between">
+                    <strong><%= item.job_title %></strong>
+                    <%= link_to '', kanban_card_path(@kanban, item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
+                  </div>
+
+                  <small class="text-muted"><%= item.company %></small>
+                </li>
+            <%end%>
+          <%end%>
+
+        </ul>
+      <% end %>
+    </div>
   </div>
 </div>
