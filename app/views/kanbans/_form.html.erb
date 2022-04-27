@@ -1,9 +1,9 @@
 <div class="col-lg-5 col-md-7 col-sm-9 mx-auto">
   <div class="card p-4">
     <%if @kanban.name.present? %>
-      <h3>Editing Kanban</h3>
+      <h3>Editing Board</h3>
     <%else%>
-      <h3>New Kanban</h3>
+      <h3>New Board</h3>
     <%end%>
   
     <%= simple_form_for(@kanban) do |f| %>
