@@ -7,6 +7,15 @@ GIT
       activemodel (>= 5.2)
 
 GIT
+  remote: https://github.com/mailjet/mailjet-gem.git
+  revision: 5fa184375b4e7eaa8da078734161213a96a321bc
+  specs:
+    mailjet (1.7.0)
+      activesupport (>= 3.1.0)
+      rack (>= 1.4.0)
+      rest-client (>= 2.0.0)
+
+GIT
   remote: https://github.com/rspec/rspec-core.git
   revision: bc9bb2da423b2cf6b7e53f1307c3ef2d24fceb7b
   branch: main
@@ -152,6 +161,8 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -186,6 +197,9 @@ GEM
       sassc (~> 2.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    http-accept (1.7.0)
+    http-cookie (1.0.4)
+      domain_name (~> 0.5)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     i18n_data (0.16.0)
@@ -204,10 +218,14 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
+    mime-types (3.4.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     minitest (5.15.0)
     msgpack (1.5.1)
     multipart-post (2.1.1)
+    netrc (0.11.0)
     nio4r (2.5.8)
     nokogiri (1.13.3-arm64-darwin)
       racc (~> 1.4)
@@ -271,6 +289,11 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rexml (3.2.5)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -310,6 +333,9 @@ GEM
       concurrent-ruby (~> 1.0)
     undraw (0.3.5)
       inline_svg (~> 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.8.1)
     unicode_utils (1.4.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -351,6 +377,7 @@ DEPENDENCIES
   faraday
   font-awesome-sass
   listen (~> 3.3)
+  mailjet!
   pg (~> 1.1)
   pry-byebug
   pry-rails

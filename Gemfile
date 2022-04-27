@@ -67,6 +67,7 @@ gem 'undraw', '~> 0.3.5'
 gem 'chartkick'
 gem 'faraday'
 gem 'country_select'
+gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
 
 group :development, :test do
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
