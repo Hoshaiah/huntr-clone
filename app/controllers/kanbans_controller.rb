@@ -19,15 +19,6 @@ class KanbansController < ApplicationController
   # POST /kanbans
   def create
     @kanban = current_user.kanbans.build(kanban_params)
-
-    begin 
-      if current_user.premium == false && current_user.kanbans.count == 1
-        @kanban.destroy
-        flash.now[:notice] = "Please upgrade to premium to create more kanbans !"
-      end
-    rescue NoMethodError
-    end
-
     
     if @kanban.save
       @kanban.create_default_columns

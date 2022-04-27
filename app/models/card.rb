@@ -1,6 +1,7 @@
 class Card < ApplicationRecord
   belongs_to :kanban_column
   has_many :activities, dependent: :destroy
+  validate :save_card?, :on => :create
 
   
   def create_activities_upon_drag(kanban, column_id)
@@ -22,5 +23,14 @@ class Card < ApplicationRecord
     end
     return false
     
+  end
+
+  private
+
+  def save_card?
+    if Current.user.premium == false && Current.user.kanbans.find_by(id: Current.user.kanbans.ids).cards.count >= 10
+        errors.add(:kanbans, message: "Please upgrade to premium to create more cards!")
+        return false
+    end
   end
 end
