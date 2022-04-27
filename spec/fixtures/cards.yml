@@ -1,0 +1,6 @@
+avion_engineer:
+  id: 1
+  job_title: "Engineer"
+  company: "Avion"
+  kanban_column: wishlist
+  position: 1
