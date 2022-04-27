@@ -3,38 +3,51 @@
     <div class="d-flex flex-column mt-n5 ms-n3 p-3 bg-light sidenav">
       <div class="d-flex justify-content-between">
         <strong class="px-2">My Boards:</strong>
-        <%= link_to new_kanban_path, class: "link-dark new-board border rounded" do %>
-          <div class="px-2">+</div>
+        <%= link_to new_kanban_path, class: "new-board border rounded" do %>
+          <div class="px-2 text-muted">+</div>
         <% end %>
       </div>
       <hr>
       <ul class="list-group">
-       <% @kanbans.each_with_index do |kanban, index| %>
+        <% if @kanbans.empty? %>
+          <li class="small text-muted text-center">no boards created</li>
+        <% else %>
+          <% @kanbans.each_with_index do |kanban, index| %>
             <%= link_to kanbans_path(kanban_id: kanban), class: "text-decoration-none fw-bold" do %>
-            <li class="sidenav-item small list-group-item list-group-item-action <%=
-              if params[:kanban_id].nil? && index == 0
-                "list-group-item-primary"
-              elsif kanban.id == params[:kanban_id].to_i
-                "list-group-item-primary"
-              end
-            %>">
-              <div>
-                <%= kanban.name %>
-              </div>
-              <div>
-                <%= link_to '', edit_kanban_path(kanban), class: "bi bi-pencil-square" %>
-                <%= link_to '', kanban, method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
-              </div>
-            </li>
-            <%end%>
+              <li class="sidenav-item small list-group-item list-group-item-action <%=
+                if params[:kanban_id].nil? && index == 0
+                  "list-group-item-primary"
+                elsif kanban.id == params[:kanban_id].to_i
+                  "list-group-item-primary"
+                end
+              %>">
+                <div>
+                  <%= kanban.name %>
+                </div>
+                <div>
+                  <%= link_to '', edit_kanban_path(kanban), class: "bi bi-pencil-square" %>
+                  <%= link_to '', kanban, method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
+                </div>
+              </li>
+            <% end %>
+          <% end %>
         <% end %>
       </ul>
     </div>
   </div>
 
+
   <% if @kanban %>
-    <div class="col-10">
-      <%= render @kanban %>
+    <%= render @kanban %>
+  <% else %>
+    <div class="col-10 d-flex justify-content-center">
+      <div class="flex-column">
+        <%= undraw("empty", color: "#3f51b5", size: "500*400") %>
+        <div class="text-center mt-5">No boards found. Create a board to get started!</div>
+        <div class="d-flex justify-content-center my-3">
+          <%= link_to "Create Board", new_kanban_path, class: "btn btn-primary btn-lg flex-fill" %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
