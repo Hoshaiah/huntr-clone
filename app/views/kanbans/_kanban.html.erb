@@ -37,8 +37,8 @@
         <ul class="kanban-col border" data-col-id=<%= column.id %>>
 
           <div class="kanban-col-name text-light"><%= column.name %></div>
-          <%= link_to new_kanban_card_path(@kanban, :kanban_column_id => column.id) do%>
-            <div class="kanban-col-add text-light">+</div>
+          <%= link_to new_kanban_card_path(@kanban, :kanban_column_id => column.id), class: "text-decoration-none" do%>
+            <div class="kanban-col-add text-muted border">+</div>
           <%end%>
 
           <% column.cards.sort_by{ |card| card.position}.each do |item| %>
