@@ -1,0 +1,19 @@
+wishlist:
+  name: "WISHLIST"
+  kanban: jobs
+
+applied:
+  name: "APPLIED"
+  kanban: jobs
+
+interview:
+  name: "INTERVIEW"
+  kanban: jobs
+
+offer: 
+  name: "OFFER RECEIVED"
+  kanban: jobs
+
+accepted:
+  name: "OFFER ACCEPTED"
+  kanban: jobs

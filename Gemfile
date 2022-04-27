@@ -67,3 +67,9 @@ gem 'undraw', '~> 0.3.5'
 gem 'chartkick'
 gem 'faraday'
 gem 'country_select'
+
+group :development, :test do
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
+  end
+end
