@@ -16,9 +16,6 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= render 'modals/info' %>
-    <% if @show_modal %>
-      <script>$(<button data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" ></button>).click()</script>
-    <% end %>
     <div class="container-fluid">
       <%= yield %>
     </div>
