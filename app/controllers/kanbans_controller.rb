@@ -1,22 +1,18 @@
 class KanbansController < ApplicationController
   before_action :set_kanban, only: [:edit, :update, :destroy, :sort]
 
-  # GET /kanbans
   def index
     @kanbans = current_user.kanbans
     @kanban = !params[:kanban_id].nil? ? current_user.kanbans.find(params[:kanban_id]) : current_user.kanbans.first
   end
 
-  # GET /kanbans/new
   def new
     @kanban = current_user.kanbans.build
   end
 
-  # GET /kanbans/1/edit
   def edit
   end
 
-  # POST /kanbans
   def create
     @kanban = current_user.kanbans.build(kanban_params)
     
@@ -28,7 +24,6 @@ class KanbansController < ApplicationController
     end
   end
 
-  # PATCH/PUT /kanbans/1
   def update
     if @kanban.update(kanban_params)
       redirect_to kanbans_path(kanban_id: @kanban), notice: 'Kanban was successfully updated.'
@@ -37,7 +32,6 @@ class KanbansController < ApplicationController
     end
   end
 
-  # DELETE /kanbans/1
   def destroy
     @kanban.destroy
     redirect_to kanbans_path, notice: 'Kanban was successfully destroyed.'
