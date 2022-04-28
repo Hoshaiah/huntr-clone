@@ -3,12 +3,13 @@ require 'rails_helper'
 RSpec.describe Card, type: :model do
     
     context 'after creating a card' do
-        fixtures :kanban_columns
+        fixtures :kanban_columns, :users
 
         before do
             def build_card(kanban_column: kanban_columns(:wishlist), job_title: "engineer", company: "Avion", position: 1)
                 Card.new(kanban_column: kanban_column, job_title: job_title, company: company, position: position)
             end
+            Current.user = users(:mark)
         end
 
         it 'should output true if kanban_column, job_title, company, and position are provided ' do
