@@ -1,43 +1,51 @@
 <div class="col-lg-9 col-md-10 col-sm-12 mx-auto pb-5">
-    <div class="">
+    <div class="d-flex justify-content-between">
         <%= button_to kanbans_path(kanban_id: @kanban), method: :get, class: "btn btn-sm button-style border mb-2" do %>
-          <div>
-            <i class="bi bi-kanban-fill"></i>
-            Back to Board
-          </div>
+            <div>
+                <i class="bi bi-kanban-fill"></i>
+                Back to Board
+            </div>
+        <% end %>
+
+        <%= form_with url: kanban_metrics_index_path(@kanban), method: :get do |f| %>
+            <%= f.label :from_date, "from:", class: "small" %>
+            <%= f.date_field :from_date, :value => !params[:from_date].nil? ? params[:from_date].to_date.strftime('%Y-%m-%d') : 1.month.ago.strftime('%Y-%m-%d') %>
+            <%= f.label :to_date, "to:", class: "small" %>
+            <%= f.date_field :to_date, :value => !params[:from_date].nil? ? params[:to_date].to_date.strftime('%Y-%m-%d') : Date.current.strftime('%Y-%m-%d') %>
+            <%= f.submit "Filter", class: "btn btn-sm button-style border" %>
         <% end %>
     </div>
 
-    <div class="card p-4">
+    <div class="card p-4 mb-2">
         <div class="text-muted">Job Search Funnel</div>
         <%= column_chart @column_graph_data, empty: "no data available", label: "Jobs" %>
-        <div class="mt-4 mb-1 text-muted">Conversion Rates</div>
+        <div class="mt-4 mb-1 text-muted">Job Conversion Rates</div>
         <div class="d-flex flex-row">
             <div class="card flex-grow-1 p-3 small text-center">
-               Jobs Saved: <strong><%= @kanban.cards.count %></strong>
+               Saved: <strong><%= @cards.count %></strong>
             </div>
             <div class="card flex-grow-1 p-3 small text-center">
                Applied: 
                <strong>
-                    <%= @column_graph_data["APPLIED"] == 0 ? "0%" : "#{@kanban.cards.count / @column_graph_data["APPLIED"] * 100}%" %>
+                    <%= @column_graph_data["APPLIED"] == 0 ? "0%" : "#{@cards.count / @column_graph_data["APPLIED"] * 100}%" %>
                 </strong>
             </div>
             <div class="card flex-grow-1 p-3 small text-center">
                 Interview:
                 <strong>
-                     <%= @column_graph_data["INTERVIEW"] == 0 ? "0%" : "#{@kanban.cards.count / @column_graph_data["INTERVIEW"] * 100}%" %>
+                     <%= @column_graph_data["INTERVIEW"] == 0 ? "0%" : "#{@cards.count / @column_graph_data["INTERVIEW"] * 100}%" %>
                 </strong>
             </div>
             <div class="card flex-grow-1 p-3 small text-center">
                 Offer Received:
                 <strong>
-                    <%= @column_graph_data["OFFER RECEIVED"] == 0 ? "0%" : "#{@kanban.cards.count / @column_graph_data["OFFER RECEIVED"] * 100}%" %>
+                    <%= @column_graph_data["OFFER RECEIVED"] == 0 ? "0%" : "#{@cards.count / @column_graph_data["OFFER RECEIVED"] * 100}%" %>
                 </strong>
             </div>
         </div>
     </div>
 
-    <div class="card p-4 table-wrap">
+    <div class="card p-4 table-wrap mb-2">
         <table class="table table-sm table-hover caption-top border">
             <caption>Jobs</caption>
 
@@ -51,8 +59,8 @@
             </thead>
 
             <tbody>
-                <%if @jobs.any? %>
-                    <% @jobs.each do |card| %>
+                <%if @cards.any? %>
+                    <% @cards.order(updated_at: :desc).each do |card| %>
                         <tr>
                             <td><%= card.job_title %></td>
                             <td><%= card.company %></td>
@@ -67,5 +75,10 @@
                 <% end %>
             </tbody>
         </table>
+    </div>
+
+    <div class = "card p-4 mb-2">
+        <div class="text-muted">Jobs Created</div>
+        <%= column_chart @jobs_created_data, label: "Jobs created on this day" %>
     </div>
 </div>

@@ -65,6 +65,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'undraw', '~> 0.3.5'
 gem 'chartkick'
+gem 'groupdate'
 gem 'faraday'
 gem 'country_select'
 gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'

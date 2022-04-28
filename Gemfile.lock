@@ -197,6 +197,8 @@ GEM
       sassc (~> 2.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    groupdate (6.1.0)
+      activesupport (>= 5.2)
     http-accept (1.7.0)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
@@ -376,6 +378,7 @@ DEPENDENCIES
   dotenv-rails
   faraday
   font-awesome-sass
+  groupdate
   listen (~> 3.3)
   mailjet!
   pg (~> 1.1)
