@@ -16,7 +16,7 @@
         <% end %>
     </div>
 
-    <div class="card p-4">
+    <div class="card p-4 mb-2">
         <div class="text-muted">Job Search Funnel</div>
         <%= column_chart @column_graph_data, empty: "no data available", label: "Jobs" %>
         <div class="mt-4 mb-1 text-muted">Job Conversion Rates</div>
@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <div class="card p-4 table-wrap">
+    <div class="card p-4 table-wrap mb-2">
         <table class="table table-sm table-hover caption-top border">
             <caption>Jobs</caption>
 
@@ -77,7 +77,7 @@
         </table>
     </div>
 
-    <div class = "card p-4">
+    <div class = "card p-4 mb-2">
         <div class="text-muted">Jobs Created</div>
         <%= column_chart @jobs_created_data, label: "Jobs created on this day" %>
     </div>
