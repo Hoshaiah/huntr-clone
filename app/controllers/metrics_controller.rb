@@ -19,7 +19,7 @@ class MetricsController < ApplicationController
     from_date = from_date.nil? ? 1.month.ago.beginning_of_day : from_date.to_date.beginning_of_day
     to_date = to_date.nil? ? Date.current.end_of_day : to_date.to_date.end_of_day
 
-    @cards.group_by_day(:created_at, format: '%d %b', range: from_date..to_date).count
+    @cards.group_by_day(:created_at, format: '%d %b %y', range: from_date..to_date).count
   end
 
 end
