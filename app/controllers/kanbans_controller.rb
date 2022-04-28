@@ -1,59 +1,40 @@
 class KanbansController < ApplicationController
-  before_action :set_kanban, only: [:show, :edit, :update, :destroy, :sort]
+  before_action :set_kanban, only: [:edit, :update, :destroy, :sort]
 
-  # GET /kanbans
   def index
     @kanbans = current_user.kanbans
     @kanban = !params[:kanban_id].nil? ? current_user.kanbans.find(params[:kanban_id]) : current_user.kanbans.first
   end
 
-  # GET /kanbans/1
-  def show
-  end
-
-  # GET /kanbans/new
   def new
     @kanban = current_user.kanbans.build
   end
 
-  # GET /kanbans/1/edit
   def edit
   end
 
-  # POST /kanbans
   def create
     @kanban = current_user.kanbans.build(kanban_params)
-
-    begin 
-      if current_user.premium == false && current_user.kanbans.count == 1
-        @kanban.destroy
-        flash.now[:notice] = "Please upgrade to premium to create more kanbans !"
-      end
-    rescue NoMethodError
-    end
-
     
     if @kanban.save
       @kanban.create_default_columns
-      redirect_to @kanban, notice: 'Kanban was successfully created.'
+      redirect_to kanbans_path(kanban_id: @kanban), notice: 'Kanban was successfully created.'
     else  
       render :new
     end
   end
 
-  # PATCH/PUT /kanbans/1
   def update
     if @kanban.update(kanban_params)
-      redirect_to @kanban, notice: 'Kanban was successfully updated.'
+      redirect_to kanbans_path(kanban_id: @kanban), notice: 'Kanban was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE /kanbans/1
   def destroy
     @kanban.destroy
-    redirect_to kanbans_url, notice: 'Kanban was successfully destroyed.'
+    redirect_to kanbans_path, notice: 'Kanban was successfully destroyed.'
   end
 
   def sort

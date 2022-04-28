@@ -77,6 +77,7 @@ class CardSubscriptionController < ApplicationController
 
       if status == "paid"
         current_user.update(premium: true)
+        UserMailer.with(user: current_user).user_upgraded_to_premium.deliver_now
         redirect_to subscription_card_success_path
       end
     rescue NoMethodError

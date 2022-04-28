@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
+  get '/user' => "kanbans#index", :as => :user_root #redirects to kanbans/index upon login
   root to: 'pages#home'
   patch '/kanbans/:id/sort', to: 'kanbans#sort', as: "kanban_sort"
 
