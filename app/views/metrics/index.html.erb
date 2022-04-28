@@ -77,6 +77,8 @@
         </table>
     </div>
 
-    <div>
+    <div class = "card p-4">
+        <div class="text-muted">Jobs Created</div>
+        <%= column_chart @jobs_created_data, label: "Jobs created on this day" %>
     </div>
 </div>
