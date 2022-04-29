@@ -1,8 +1,8 @@
 class ActivitiesController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_kanban, only: [:new, :create, :update, :index, :edit]
-    before_action :set_card, only: [:new, :create, :update, :index, :edit]
-    before_action :set_activity, only: [:update, :edit]
+    before_action :set_kanban, only: [:new, :create, :update, :index, :edit, :destroy]
+    before_action :set_card, only: [:new, :create, :update, :index, :edit, :destroy]
+    before_action :set_activity, only: [:update, :edit, :destroy]
 
 
     def index
@@ -36,6 +36,13 @@ class ActivitiesController < ApplicationController
             end
         end
     end
+
+    def destroy
+        if @activity.destroy
+            redirect_to edit_kanban_card_url(kanban_id: @kanban, id: @card), notice: 'Activity was successfully destroyed'
+        end
+    end
+
 
     private
     # Use callbacks to share common setup or constraints between actions.
