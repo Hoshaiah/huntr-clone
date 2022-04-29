@@ -75,3 +75,5 @@ group :development, :test do
     gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
   end
 end
+
+gem 'rails-controller-testing'
