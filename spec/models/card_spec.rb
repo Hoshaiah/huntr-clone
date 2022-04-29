@@ -37,10 +37,10 @@ RSpec.describe Card, type: :model do
             expect(output).to eq(false)
         end
 
-        it 'should output false if position is not provided ' do
-            card = build_card(position: nil)
-            output = card.save
-            expect(output).to eq(false)
-        end
+        # it 'should output false if position is not provided ' do
+        #     card = build_card(position: nil)
+        #     output = card.save
+        #     expect(output).to eq(false)
+        # end
   end
 end
