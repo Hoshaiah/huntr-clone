@@ -75,7 +75,7 @@ module PaymongoApi
                             attributes: {
                             payment_method: payment_method_id, 
                             client_key: client_key,
-                            return_url: "http://localhost:3000/subscription/card/success"
+                            return_url: "https://huntr-clone.herokuapp.com/subscription/card/success"
                             }
                         }
 

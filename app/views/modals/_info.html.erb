@@ -96,18 +96,21 @@
           <p class="fs-5 my-3"><strong>&#8369; 1000 </strong> will be deducted to your account.</p>
           <%= form_with url: source_gcash_path do |f| %>
             <button class="btn btn-primary p-0 pe-3 mt-4" style="max-height: 50px; border-radius: 20px;">
-              <img src="/assets/gcash.png" class="img-fluid me-2" width="49" style="max-height: 48px; border-top-left-radius: 19px; border-bottom-left-radius: 19px;"/> Pay with Gcash
+              <%= image_tag("gcash.png", class: "img-fluid me-2", width:"49", style:"max-height: 48px; border-top-left-radius: 19px; border-bottom-left-radius: 19px;") %> 
+              Pay with Gcash
             </button>
           <% end %>
           <%= form_with url: source_grabpay_path do |f| %>
             <button class="btn btn-primary p-0 pe-2 my-3" style="max-height: 50px; border-radius: 20px;">
-              <img src="/assets/grabpay.png" class="img-fluid me-2" width="47" style="max-height: 48px; border-top-left-radius: 19px; border-bottom-left-radius: 19px;"/> Pay with GrabPay
+              <%= image_tag("grabpay.png", class: "img-fluid me-2", width:"47", style:"max-height: 48px; border-top-left-radius: 19px; border-bottom-left-radius: 19px;") %>
+              Pay with GrabPay
             </button>
             
           <% end %>
           <%= form_with url: subscribe_path do |f| %>
             <button class="btn btn-primary p-0 pe-3" style="max-height: 50px; border-radius: 20px;">
-              <img src="/assets/visalogo.png" class="img-fluid me-3" width="49" style="max-height: 48px; border-top-left-radius: 19px; border-bottom-left-radius: 19px;"/> Pay with Cards
+              <%= image_tag("visalogo.png", class: "img-fluid me-3", width:"49", style:"max-height: 48px; border-top-left-radius: 19px; border-bottom-left-radius: 19px;") %> 
+              Pay with Cards
             </button>
           <% end %>
           <button class="btn btn-primary my-4 rounded-pill" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" style="max-width: 200px; width: 200px;">No thanks</button>
