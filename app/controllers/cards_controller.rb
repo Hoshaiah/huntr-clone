@@ -15,7 +15,7 @@ class CardsController < ApplicationController
       @card.update(position: card_position)
       redirect_to kanbans_path(kanban_id: @kanban), notice: 'Card was successfully created.'
     else
-    
+      redirect_back fallback_location:"/", alert: "Please input required fields."
     end
   end
 
