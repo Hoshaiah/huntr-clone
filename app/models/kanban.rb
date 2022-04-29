@@ -4,6 +4,7 @@ class Kanban < ApplicationRecord
     has_many :cards, through: :kanban_columns
     has_many :activities, through: :cards
     validate :save_kanban?, :on => :create
+    validates :name, presence: true
 
     KANBAN_COLUMNS = ['WISHLIST','APPLIED','INTERVIEW','OFFER RECEIVED','OFFER ACCEPTED', 'OFFER REJECTED', 'REJECTED']
 
