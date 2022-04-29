@@ -35,19 +35,19 @@
             <div class="card flex-grow-1 p-3 small text-center">
                Applied: 
                <strong>
-                    <%= @column_graph_data["APPLIED"] == 0 ? "0%" : "#{@cards.count / @column_graph_data["APPLIED"] * 100}%" %>
+                    <%= @column_graph_data["APPLIED"] == 0 ? "0%" : "#{(@column_graph_data["APPLIED"].to_f / @cards.count * 100).round(0)}%" %>
                 </strong>
             </div>
             <div class="card flex-grow-1 p-3 small text-center">
                 Interview:
                 <strong>
-                     <%= @column_graph_data["INTERVIEW"] == 0 ? "0%" : "#{@cards.count / @column_graph_data["INTERVIEW"] * 100}%" %>
+                     <%= @column_graph_data["INTERVIEW"] == 0 ? "0%" : "#{(@column_graph_data["INTERVIEW"].to_f / @cards.count * 100).round(0)}%" %>
                 </strong>
             </div>
             <div class="card flex-grow-1 p-3 small text-center">
                 Offer Received:
                 <strong>
-                    <%= @column_graph_data["OFFER RECEIVED"] == 0 ? "0%" : "#{@cards.count / @column_graph_data["OFFER RECEIVED"] * 100}%" %>
+                    <%= @column_graph_data["OFFER RECEIVED"] == 0 ? "0%" : "#{(@column_graph_data["OFFER RECEIVED"].to_f / @cards.count * 100).round(0)}%" %>
                 </strong>
             </div>
         </div>
