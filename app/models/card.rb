@@ -2,6 +2,7 @@ class Card < ApplicationRecord
   belongs_to :kanban_column
   has_many :activities, dependent: :destroy
   validate :save_card?, :on => :create
+  validates :company, :job_title, presence: true
 
   
   def create_activities_upon_drag(kanban, column_id)

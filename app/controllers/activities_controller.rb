@@ -39,7 +39,8 @@ class ActivitiesController < ApplicationController
 
     def destroy
         if @activity.destroy
-            redirect_to edit_kanban_card_url(kanban_id: @kanban, id: @card), notice: 'Activity was successfully destroyed'
+            #redirect_to edit_kanban_card_url(kanban_id: @kanban, id: @card), notice: 'Activity was successfully destroyed'
+            redirect_back fallback_location:"/", notice: 'Activity was successfully destroyed'
         end
     end
 

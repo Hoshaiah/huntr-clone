@@ -1,38 +1,42 @@
 <div class="col-lg-7 col-md-8 col-sm-9 mx-auto">
     <div class="card p-4 mb-5">
-        <%= link_to "Back to Card" , edit_kanban_card_url(@kanban.id, @card.id) %>
-        <%= link_to "New Activity" , new_kanban_card_activity_url(@kanban.id, @card.id) %>
-        <hr>
-        <div>
-            <h1>Activities</h1>
-            <% @activities.each do |activity| %>
-                <% if !activity.completed %>
-                    <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
-                        <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
-                        <%= link_to kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
-                            <label><%=activity.title %> </label>
-                        <% end %>
-                        <p><%=activity.tag %></p>
-                        <%= hidden_field_tag :from_activities, true %>
-                    <% end %>
-                <%end%>
-            <% end %>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h3 class="mt-2">Activities</h3>
+            <%= link_to "+ New Activity" , new_kanban_card_activity_url(@kanban.id, @card.id), class:"btn btn-sm button-style border d-flex align-items-center" %>
         </div>
-        <hr>
-        <div>
-            <p>Complete</p>
-            <% @activities.each do |activity| %>
-                <% if activity.completed %>
-                    <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
-                        <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
-                        <%= link_to edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
-                            <label><%=activity.title %> </label>
+
+        <div class="row">
+            <div class="col card p-4 mb-1">
+                <p>To Do</p>
+                <% @activities.each do |activity| %>
+                    <% if !activity.completed %>
+                        <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
+                            <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
+                            <%= link_to activity.title, edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id), class: "fw-bold" %>
+                            <small class="text-muted"><%=activity.tag %></small>
+                            <%= hidden_field_tag :from_activities, true %>
+                            <%= link_to '', kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
                         <% end %>
-                        <p><%=activity.tag %></p>
-                        <%= hidden_field_tag :from_activities, true %>
-                    <% end %>
-                <%end%>
-            <% end %>
+                    <%end%>
+                <% end %>
+            </div>
+
+            <div class="col card p-4 mb-1">
+                <p>Complete</p>
+                <% @activities.each do |activity| %>
+                    <% if activity.completed %>
+                        <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
+                            <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
+                            <%= link_to activity.title, edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id), class: "fw-bold" %>
+                            <small class="text-muted"><%=activity.tag %></small>
+                            <%= hidden_field_tag :from_activities, true %>
+                            <%= link_to '', kanban_card_activity_path(@kanban.id, @card.id,activity.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
+                        <% end %>
+                    <%end%>
+                <% end %>
+            </div>
         </div>
+
+        <%= link_to "Back to Card" , edit_kanban_card_url(@kanban.id, @card.id), class: "fw-bold mt-2" %>
     </div>     
 </div>

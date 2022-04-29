@@ -2,5 +2,7 @@
     <div class="card p-4 mb-5">
         <h3>Editing Activity</h3>
         <%= render 'form', activity: @activity %>
+
+        <%= link_to "Back to Card" , edit_kanban_card_url(@kanban.id, @card.id), class: "fw-bold" %>
     </div>
 </div>
