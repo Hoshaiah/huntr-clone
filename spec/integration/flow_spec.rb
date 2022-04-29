@@ -33,7 +33,7 @@ RSpec.describe "Huntr App", :type => :request do
         end
 
         def create_activity(card)
-            activity = card.activities.build(id: 10, title: "Applied", tag: "Apply")
+            activity = card.activities.build(id: 10, title: "My Created Activity", tag: "Apply")
             output = activity.save
             if output
                 return activity
@@ -169,22 +169,22 @@ RSpec.describe "Huntr App", :type => :request do
         expect(response.body).to include("Edited Activity Title")  
     end
 
-    # it "should delete an activity" do
-    #     kanban = create_kanban(Current.user) 
-    #     expect(kanban).to_not eq(nil)
-    #     kanban_column = create_kanban_column(kanban)
-    #     expect(kanban_column).to_not eq(nil)
-    #     card = create_card(kanban_column)
-    #     expect(card).to_not eq(nil) 
-    #     activity = create_activity(card)
-    #     expect(activity).to_not eq(nil) 
+    it "should delete an activity" do
+        kanban = create_kanban(Current.user) 
+        expect(kanban).to_not eq(nil)
+        kanban_column = create_kanban_column(kanban)
+        expect(kanban_column).to_not eq(nil)
+        card = create_card(kanban_column)
+        expect(card).to_not eq(nil) 
+        activity = create_activity(card)
+        expect(activity).to_not eq(nil) 
 
-    #     get "/kanbans/" + kanban.id.to_s + "/cards/" + card.id.to_s + "/edit", :params => {kanban_column_id: kanban_column.id} 
-    #     expect(response.body).to include("Editing Card")
-    #     expect(response.body).to include(activity.title)
+        get "/kanbans/" + kanban.id.to_s + "/cards/" + card.id.to_s + "/edit", :params => {kanban_column_id: kanban_column.id} 
+        expect(response.body).to include("Editing Card")
+        expect(response.body).to include(activity.title)
 
-    #     delete "/kanbans/" +  kanban.id.to_s + "/cards/" + card.id.to_s + "/activities/" + activity.id.to_s
-    #     follow_redirect!
-    #     expect(response.body).to_not include(activity.title))  
-    # end
+        delete "/kanbans/" +  kanban.id.to_s + "/cards/" + card.id.to_s + "/activities/" + activity.id.to_s
+        follow_redirect!
+        expect(response.body).to_not include(activity.title)
+    end
 end
