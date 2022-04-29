@@ -9,9 +9,17 @@
 
         <%= form_with url: kanban_metrics_index_path(@kanban), method: :get do |f| %>
             <%= f.label :from_date, "from:", class: "small" %>
-            <%= f.date_field :from_date, :value => !params[:from_date].nil? ? params[:from_date].to_date.strftime('%Y-%m-%d') : 1.month.ago.strftime('%Y-%m-%d') %>
+            <%= f.date_field :from_date, 
+                :value => !params[:from_date].nil? ? params[:from_date].to_date.strftime('%Y-%m-%d') : 1.month.ago.strftime('%Y-%m-%d'),
+                :required => true
+            %>
+
             <%= f.label :to_date, "to:", class: "small" %>
-            <%= f.date_field :to_date, :value => !params[:from_date].nil? ? params[:to_date].to_date.strftime('%Y-%m-%d') : Date.current.strftime('%Y-%m-%d') %>
+            <%= f.date_field :to_date, 
+                :value => !params[:from_date].nil? ? params[:to_date].to_date.strftime('%Y-%m-%d') : Date.current.strftime('%Y-%m-%d'), 
+                :required => true 
+            %>
+            
             <%= f.submit "Filter", class: "btn btn-sm button-style border" %>
         <% end %>
     </div>
