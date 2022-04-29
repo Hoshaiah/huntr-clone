@@ -24,8 +24,9 @@
                 <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
                     <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
                     <%= link_to edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
-                        <label><%=activity.title %> </label>
+                        <p><%=activity.title%> </p>
                     <%end%>
+                    <%= link_to '', kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
                 <% end %>
             <% end %>
             <%= link_to "+ Log Application", new_kanban_card_activity_url(@kanban.id, @card.id, :type => "Apply") %>
@@ -37,8 +38,9 @@
                 <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
                     <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
                     <%= link_to edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
-                        <label><%=activity.title %> </label>
+                        <p><%=activity.title%> </p>
                     <% end %>
+                    <%= link_to '', kanban_card_activity_path(@kanban.id, @card.id,activity.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
                 <% end %>
             <% end %>
             <%= link_to "+ Log Interview", new_kanban_card_activity_url(@kanban.id, @card.id, :type => "Interview") %>
@@ -50,8 +52,9 @@
                 <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
                     <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
                     <%= link_to edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
-                        <label><%=activity.title %> </label>
+                        <p><%=activity.title%> </p>
                     <% end %>
+                    <%= link_to '', kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
                 <% end %>
             <% end %>
             <%= link_to "+ Log Offer", new_kanban_card_activity_url(@kanban.id, @card.id, :type => "Offer") %>
@@ -63,8 +66,9 @@
                 <%= form_with url: kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :put do |f| %>
                     <%= check_box("activity", :completed, options = {checked: activity.completed, onchange: "this.form.submit()", id: "activity_#{activity.id}", class:""}) %>
                     <%= link_to edit_kanban_card_activity_path(@kanban.id, @card.id, activity.id) do %>
-                        <label><%=activity.title %> </label>
+                        <p><%=activity.title%> </p>
                     <%end%>
+                    <%= link_to '', kanban_card_activity_path(@kanban.id, @card.id, activity.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bi bi-trash-fill text-danger ps-1" %>
                 <% end %>
             <% end %>
             <%= link_to "+ Log Offer Acceptance", new_kanban_card_activity_url(@kanban.id, @card.id, :type => "Accept") %>
