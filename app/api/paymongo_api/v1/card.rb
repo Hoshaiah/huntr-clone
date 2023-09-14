@@ -5,7 +5,7 @@ module PaymongoApi
             Base_url = "https://api.paymongo.com/v1"
             Payment_methods = "/payment_methods"
             Payment_intents = "/payment_intents"
-            Token = Rails.application.credentials.Token
+            Token = Base64.encode64(Rails.application.credentials.dig(:paymongo, :secret_key))
 
             def create_payment_intent
                 response = connection.post("#{Payment_intents}") do | request |
@@ -75,7 +75,7 @@ module PaymongoApi
                             attributes: {
                             payment_method: payment_method_id, 
                             client_key: client_key,
-                            return_url: "https://huntr-clone.herokuapp.com/subscription/card/success"
+                            return_url: "http://127.0.0.1:3000/subscription/card/success"
                             }
                         }
 

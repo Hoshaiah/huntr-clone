@@ -5,7 +5,7 @@ module PaymongoApi
             Base_url = "https://api.paymongo.com/v1"
             Source = "/sources"
             Payments = "/payments"
-            Token = Rails.application.credentials.Token
+            Token = Base64.encode64(Rails.application.credentials.dig(:paymongo, :secret_key))
 
             def create_source_gcash
 
@@ -16,8 +16,8 @@ module PaymongoApi
                             attributes:{
                                 amount:100000.to_i,
                                 redirect:{
-                                    success:"https://huntr-clone.herokuapp.com/payments/gcash/success",
-                                    failed:"https://huntr-clone.herokuapp.com/subscription/ewallet/failed"
+                                    success:"http://127.0.0.1:3000/payments/gcash/success",
+                                    failed:"http://127.0.0.1:3000/subscription/ewallet/failed"
                                 },
                                 type:"gcash",
                                  currency:"PHP"
